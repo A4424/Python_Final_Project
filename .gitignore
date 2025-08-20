@@ -1,0 +1,12 @@
+# Ignorar el entorno virtual de PyCharm
+.venv/
+
+# Archivos y carpetas de PyCharm
+.idea/
+
+# Archivos de caché
+__pycache__/
+
+# Archivos de reporte de pruebas
+*.html
+*.xml
