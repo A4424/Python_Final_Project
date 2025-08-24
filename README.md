@@ -1,40 +1,68 @@
-# Python_Final_Project
-Este repositorio contiene un framework de automatización de pruebas para la API de demostración "Airline Demo API". El proyecto utiliza Pytest y la librería Requests para validar las funcionalidades clave de la API, siguiendo una arquitectura modular y escalable.
 
-## Objetivos del Proyecto
-El objetivo principal es asegurar la calidad de la API mediante la verificación de sus funcionalidades de:
-* **Autenticación (AUTH):** Validar el flujo de login y el uso de tokens.
-* **Gestión de Aviones (AIRCRAFTS):** Confirmar que las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) funcionan correctamente y respetan los permisos.
-
-## Estructura del Proyecto
-El framework se organiza en la siguiente estructura modular para facilitar la reutilización y el mantenimiento del código:
-* `tests/`: Contiene todos los casos de prueba.
-* `src/`: Incluye el código fuente del framework, como clases de API y esquemas de validación.
-* `data/`: Almacena los datos de prueba separados del código.
-* `config/`: Guarda las variables de configuración del proyecto (ej. URLs, credenciales).
-
-## Requisitos de Instalación
-Para ejecutar las pruebas, se deben instalar las dependencias de Python necesarias.
-1.  Asegúrese de tener un entorno virtual activo.
-2.  Ejecute el siguiente comando para instalar las librerías:
-    `pip install -r requirements.txt`
-
-## Ejecución de las Pruebas
-Las pruebas se ejecutan utilizando Pytest. Se pueden ejecutar todos los tests con el siguiente comando:
-`pytest`
-
-Para ejecutar un test específico o un conjunto de tests, se pueden usar las siguientes opciones:
-* Ejecutar todos los tests en un archivo:
-    `pytest tests/auth/test_auth.py`
-* Ejecutar los tests con una marca específica:
-    `pytest -m "smoke"`
-
-## Reporte de Pruebas
-Se pueden generar reportes de pruebas en formato HTML con la librería pytest-html.
-* Instalar la librería:
-    `pip install pytest-html`
-* Ejecutar los tests y generar el reporte:
-    `pytest --html=reporte_pruebas.html`
 
 ## Autor
-* Adriana L. Loretán
+Adriana L. Loretán
+
+#  Python API Automation - Pruebas de Registro
+
+## Descripción
+Este proyecto de pruebas automatizadas, desarrollado con **Pytest** y la librería **Requests**, valida el comportamiento del *endpoint* de registro de usuarios (`/auth/signup`) de una API de aerolíneas. El objetivo es asegurar que la API funcione correctamente tanto con datos válidos como con errores esperados.
+
+## Requisitos
+Asegúrate de tener instalado **Python 3.8 o superior**. Para gestionar las dependencias del proyecto, se recomienda usar un entorno virtual.
+
+##  Configuración y Ejecución de los Tests
+Para empezar a trabajar con el proyecto, sigue estos pasos:
+
+1.  **Clona el repositorio**:
+    Navega a la carpeta de tu proyecto y clona el repositorio desde tu terminal:
+    ```bash
+    git clone [https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository](https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository)
+    cd Python_Final_Project
+    ```
+    *(Nota: Reemplaza `https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository` con la URL real de tu proyecto).*
+
+2.  **Configura el entorno virtual en PyCharm**:
+    -   Abre el proyecto en PyCharm.
+    -   Ve a `File` -> `Settings` -> `Project: [Tu Proyecto]` -> `Python Interpreter`.
+    -   Haz clic en el ícono de `Engranaje` -> `Add...`.
+    -   Selecciona `Virtualenv Environment` y asegúrate de que la opción `New environment` esté seleccionada. PyCharm creará automáticamente un entorno virtual y lo configurará.
+
+3.  **Instala las dependencias**:
+    Abre la terminal de PyCharm (abajo en la ventana, en la pestaña `Terminal`) y ejecuta el siguiente comando para instalar las librerías necesarias:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Ejecuta los tests**:
+    Para ejecutar la suite de pruebas completa, abre la terminal de PyCharm y usa el siguiente comando. PyCharm reconocerá automáticamente el comando de Pytest.
+    ```bash
+    pytest tests/auth/test_signup.py
+    ```
+
+## Casos de Prueba
+El archivo `tests/auth/test_signup.py` incluye tres casos clave que se ejecutan:
+
+-   **Caso Positivo: Registro Exitoso** ✅
+    Verifica que se pueda registrar un nuevo usuario con datos válidos, esperando una respuesta `201 Created`.
+
+-   **Caso Negativo: Usuario Existente** ❌
+    Prueba el manejo de errores al intentar registrar un usuario con un email que ya existe, esperando una respuesta `400 Bad Request`.
+
+-   **Caso Negativo: Email Inválido** ❌
+    Verifica que la API rechace una solicitud con un formato de email incorrecto, esperando una respuesta `422 Unprocessable Entity`.
+
+## Estructura del Proyecto
+.
+├── config/
+│   └── config.py          # Constantes y URLs
+├── src/
+│   └── api/
+│       └── signup_api.py  # Lógica de la API para las peticiones
+├── tests/
+│   └── auth/
+│       └── test_signup.py # Casos de prueba
+├── venv/                  # Entorno virtual de Python
+├── pytest.ini             # Configuración de Pytest
+├── README.md              # Este documento
+└── requirements.txt       # Dependencias del proyecto
