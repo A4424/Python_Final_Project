@@ -1,68 +1,52 @@
-
-
 ## Autor
 Adriana L. Loretán
 
-#  Python API Automation - Pruebas de Registro
+# Python Final Project - QA Testing
+<!-- Indicadores  - badges que aparecen al inicio -->
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![Pytest](https://img.shields.io/badge/pytest-8.4.1-orange)
+![Status](https://img.shields.io/badge/build-passing-brightgreen)
 
 ## Descripción
-Este proyecto de pruebas automatizadas, desarrollado con **Pytest** y la librería **Requests**, valida el comportamiento del *endpoint* de registro de usuarios (`/auth/signup`) de una API de aerolíneas. El objetivo es asegurar que la API funcione correctamente tanto con datos válidos como con errores esperados.
+Proyecto de pruebas automatizadas en Python para validar funcionalidades de autenticación (`login` y `signup`) de una aplicación web ficticia.  
+Se utilizan `pytest` y buenas prácticas de testing para asegurar la calidad del software.
 
-## Requisitos
-Asegúrate de tener instalado **Python 3.8 o superior**. Para gestionar las dependencias del proyecto, se recomienda usar un entorno virtual.
+## Tecnologías
+- Python 3.12
+- Pytest 8.4.1
+- Virtual environment (`venv`)
+<!-- NO USADO AÚN - Plugins: `anyio-4.10.0` <Plugin para testing asíncrono (async/await) -->
 
-##  Configuración y Ejecución de los Tests
-Para empezar a trabajar con el proyecto, sigue estos pasos:
+## Estructura del proyecto
+![img_1.png](img_1.png)
 
-1.  **Clona el repositorio**:
-    Navega a la carpeta de tu proyecto y clona el repositorio desde tu terminal:
-    ```bash
-    git clone [https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository](https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository)
-    cd Python_Final_Project
-    ```
-    *(Nota: Reemplaza `https://docs.github.com/es/get-started/using-git/getting-changes-from-a-remote-repository` con la URL real de tu proyecto).*
 
-2.  **Configura el entorno virtual en PyCharm**:
-    -   Abre el proyecto en PyCharm.
-    -   Ve a `File` -> `Settings` -> `Project: [Tu Proyecto]` -> `Python Interpreter`.
-    -   Haz clic en el ícono de `Engranaje` -> `Add...`.
-    -   Selecciona `Virtualenv Environment` y asegúrate de que la opción `New environment` esté seleccionada. PyCharm creará automáticamente un entorno virtual y lo configurará.
+## Instalación 
+1. Clonar el repositorio: 
+git clone <URL_DEL_REPOSITORIO>
 
-3.  **Instala las dependencias**:
-    Abre la terminal de PyCharm (abajo en la ventana, en la pestaña `Terminal`) y ejecuta el siguiente comando para instalar las librerías necesarias:
-    ```bash
-    pip install -r requirements.txt
-    ```
+2. Crear e ingresar al entorno virtual:
+python -m venv .venv
+.\.venv\Scripts\activate
 
-4.  **Ejecuta los tests**:
-    Para ejecutar la suite de pruebas completa, abre la terminal de PyCharm y usa el siguiente comando. PyCharm reconocerá automáticamente el comando de Pytest.
-    ```bash
-    pytest tests/auth/test_signup.py
-    ```
+3. Instalar dependencias:
+pip install -r requirements.txt
 
-## Casos de Prueba
-El archivo `tests/auth/test_signup.py` incluye tres casos clave que se ejecutan:
+## Ejecución de tests
+Para correr todos los tests:
 
--   **Caso Positivo: Registro Exitoso** ✅
-    Verifica que se pueda registrar un nuevo usuario con datos válidos, esperando una respuesta `201 Created`.
+pytest
 
--   **Caso Negativo: Usuario Existente** ❌
-    Prueba el manejo de errores al intentar registrar un usuario con un email que ya existe, esperando una respuesta `400 Bad Request`.
+## Resultado esperado
 
--   **Caso Negativo: Email Inválido** ❌
-    Verifica que la API rechace una solicitud con un formato de email incorrecto, esperando una respuesta `422 Unprocessable Entity`.
+collected 7 items
 
-## Estructura del Proyecto
-.
-├── config/
-│   └── config.py          # Constantes y URLs
-├── src/
-│   └── api/
-│       └── signup_api.py  # Lógica de la API para las peticiones
-├── tests/
-│   └── auth/
-│       └── test_signup.py # Casos de prueba
-├── venv/                  # Entorno virtual de Python
-├── pytest.ini             # Configuración de Pytest
-├── README.md              # Este documento
-└── requirements.txt       # Dependencias del proyecto
+tests/auth/test_login.py::test_login_success_and_validate_me PASSED
+tests/auth/test_login.py::test_login_with_wrong_password PASSED
+tests/auth/test_login.py::test_login_non_existing_user PASSED
+tests/auth/test_login.py::test_login_invalid_payload PASSED
+tests/auth/test_singup.py::test_signup_successful PASSED
+tests/auth/test_singup.py::test_signup_existing_user PASSED
+tests/auth/test_singup.py::test_signup_with_invalid_email PASSED
+
+7 passed in 17.26s
