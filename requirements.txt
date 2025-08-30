@@ -1,3 +1,4 @@
 #Instalar previamente estas librerías para desactivar adventencias.
 pytest
 requests
+pandas
