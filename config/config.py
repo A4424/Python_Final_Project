@@ -1,20 +1,4 @@
-# URL base  del proyecto
-# BASE_URL = "https://cf-automation-airline-api.onrender.com"
-
-
-# Endpoints principales de autenticación
-#SIGNUP_ENDPOINT = "/auth/signup"
-#LOGIN_ENDPOINT = "/auth/login"
-
-#Endpoints de aeropuertos
-#POST_AIRCRAFTS= "/airports"
-
-# Credenciales de usuario admin (para login y operaciones restringidas)
-#ADMIN_USER = "admin"
-#ADMIN_PASSWORD = "admin123"
-
-# ---------------------------------------------------------------------------------------------
-# NUEVA CONFIGURACIÓN 26-08-25  ---------------------------------------------------------------
+# NUEVA CONFIGURACIÓN 30-08-25  ---------------------------------------------------------------
 
 class Config:
     # URL base del proyecto
@@ -27,8 +11,11 @@ class Config:
     # Endpoints de usuarios
     USERS_ME_ENDPOINT = "/users/me"
 
-    # Endpoints de aeropuertos (lo que ya tenías)
-    POST_AIRCRAFTS = "/airports"
+    # Endpoints de aeropuertos
+    POST_AIRCRAFTS = "/airports" # No usado es esta prueba
+
+    # Endpoints de aeronaves
+    AIRCRAFTS_ENDPOINT = "/aircrafts"
 
     # Credenciales admin
     ADMIN_USER = "admin"
