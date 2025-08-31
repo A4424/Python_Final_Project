@@ -3,14 +3,21 @@ from src.api.login_api import LoginAPI
 from config.config import config
 
 @pytest.fixture(scope="session")
-def auth_token():
+def login_api():
     """
-    Fixture para obtener un token de autenticación de admin, una sola vez por sesión.
+    Se crea una instancia de LoginAPI para la sesión de pruebas.
     """
-    login_api = LoginAPI(base_url=config.BASE_URL, as_form=config.LOGIN_AS_FORM)
-    response = login_api.login_user(config.ADMIN_USER, config.ADMIN_PASSWORD)
+    return LoginAPI()
 
-    if "access_token" not in response:
-        pytest.fail(f"Fallo al obtener el token de autenticación: {response}")
-
-    return response["access_token"]
+@pytest.fixture(scope="session")
+def login_token(login_api):
+    """
+    Se obtiene un token de acceso de la API de login.
+    Este token se comparte con todos los tests de la sesión.
+    """
+    print("\nObteniendo token de login...")
+    token, status_code = login_api.login_user(config.ADMIN_USER, config.ADMIN_PASSWORD)
+    if status_code != 200:
+        pytest.fail(f"Fallo en la obtención del token de login con estado: {status_code}")
+    print("Token obtenido con éxito.")
+    return token

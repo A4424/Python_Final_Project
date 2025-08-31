@@ -1,59 +1,41 @@
-# Ignorar el entorno virtual de PyCharm
-#.venv/
-
-# Archivos y carpetas de PyCharm
-#.idea/
-
-# Archivos de caché
-#__pycache__/
-
-# Archivos de reporte de pruebas
-#*.html
-#*.xml
-# -------------------------------------------------
-#Objetivos, últ. actualziación 26-08-25: ####################
-#No subir el entorno virtual ni dependencias.
-#Evitar que se suban credenciales (de .env).
-#Mantener el repo limpio y solo con lo necesario (código + tests).
-# -------------------------------------------------
-
-# Entornos virtuales
-venv/
-.env/
+Directorios de entornos virtuales
 .venv/
+venv/
 env/
 
-# Archivos de compilación de Python
-__pycache__/
+Archivos de compilación de Python
+pycache/
 *.pyc
 *.pyo
 *.pyd
 *.pdb
 
-# Archivos de paquetes
+Archivos de paquetes
 *.egg
 *.egg-info/
 dist/
 build/
 .eggs/
 
-# Configuración de IDEs
+Archivos de configuración sensibles
+*.env
+config.json
+
+Configuración de IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Archivos de logs y reportes
+Archivos de logs y reportes de pruebas
 *.log
 *.coverage
 htmlcov/
 .coverage
 pytest_cache/
+*.html
+*.xml
 
-# Archivos de sistema
+Archivos de sistema
 .DS_Store
 Thumbs.db
-
-# Configuración sensible
-*.env
-config.json

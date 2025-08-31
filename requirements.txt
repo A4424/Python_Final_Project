@@ -1,4 +1,10 @@
-#Instalar previamente estas librerías para desactivar adventencias.
+#Ruta requeriments.txt (depende del raíz)
+
 pytest
 requests
-pandas
+jsonschema
+pandas #Librería para acceder a los archivos de datos csv de login y aeropuertos
+pytest-html
+python-dotenv
+#Aclaración: La librería os es un módulo estándar de Python que viene preinstalado con el intérprete,
+#por lo que no es necesario incluirla en el archivo requirements.txt.

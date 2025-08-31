@@ -1,4 +1,10 @@
-# NUEVA CONFIGURACIÓN 30-08-25  ---------------------------------------------------------------
+# Ruta: config/config.py
+
+import os
+from dotenv import load_dotenv
+
+# Se carga el archivo .env
+load_dotenv()
 
 class Config:
     # URL base del proyecto
@@ -8,23 +14,17 @@ class Config:
     SIGNUP_ENDPOINT = "/auth/signup"
     LOGIN_ENDPOINT = "/auth/login"
 
-    # Endpoints de usuarios
-    USERS_ME_ENDPOINT = "/users/me"
-
-    # Endpoints de aeropuertos
-    POST_AIRCRAFTS = "/airports" # No usado es esta prueba
-
     # Endpoints de aeronaves
     AIRCRAFTS_ENDPOINT = "/aircrafts"
 
-    # Credenciales admin
-    ADMIN_USER = "admin"
-    ADMIN_PASSWORD = "admin123"
+    # Credenciales admin obtenidas desde el entorno
+    ADMIN_USER = os.getenv('ADMIN_USER')
+    ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
     # Cómo envía el payload de login:
     # True  -> application/x-www-form-urlencoded con campos: username, password
     # False -> application/json con campos: email, password
     LOGIN_AS_FORM = True
 
-# Para mantener compatibilidad con tu import actual:
+# Para mantener compatibilidad con el import actual
 config = Config()

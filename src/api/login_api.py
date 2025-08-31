@@ -1,53 +1,81 @@
-#Cliente de API de Login - Archivo: src / api / login_api.py
+# Ruta src/api/login_api.py
+
 import requests
-from typing import Dict, Any, Optional
+import json
+from ..schemas.login_schemas import login_schema
+from jsonschema import validate, ValidationError
+from config.config import config
 
 
 class LoginAPI:
-    def __init__(self, base_url: str, endpoint: str = "/auth/login", as_form: bool = True):
-        self.base_url = base_url.rstrip("/")
-        self.endpoint = endpoint
-        self.as_form = as_form
-        # headers "base"; se ajustan dinámicamente según content-type
-        self.headers_json = {
-            "accept": "application/json",
-            "Content-Type": "application/json",
-        }
-        self.headers_form = {
-            "accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-        }
+    def __init__(self):
+        self.base_url = config.BASE_URL
+        self.login_endpoint = config.LOGIN_ENDPOINT
+        self.login_as_form = config.LOGIN_AS_FORM
 
-    def login_user(self, identifier: str, password: str) -> Dict[str, Any]:
+    def login_user(self, username, password):
         """
-        Retorna:
-            - En éxito: dict con el JSON de la API (p.ej., {"access_token": "...", "token_type": "bearer", ...})
-            - En error : {"error": str, "status_code": <int opcional>}
+        Realiza una solicitud de login a la API.
+
+        :param username: Nombre de usuario para el login.
+        :param password: Clave de acceso del usuario.
+        :return: Tupla con el token de acceso y el código de estado HTTP.
+                 (access_token, status_code)
         """
-        url = f"{self.base_url}{self.endpoint}"
+        url = f"{self.base_url}{self.login_endpoint}"
+
+        # Se prepara el payload según la configuración
+        if self.login_as_form:
+            # Los datos se envían como form-urlencoded
+            payload = {
+                "username": username,
+                "password": password
+            }
+            headers = {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        else:
+            # Los datos se enviarían como JSON (no se usará en este caso)
+            payload = {
+                "email": username,
+                "password": password
+            }
+            headers = {
+                "Content-Type": "application/json"
+            }
 
         try:
-            if self.as_form:
-                # Típico de FastAPI con OAuth2PasswordRequestForm: username + password
-                payload = {"username": identifier, "password": password}
-                response = requests.post(url, headers=self.headers_form, data=payload)
-            else:
-                # Contratos que esperan JSON con email + password
-                payload = {"email": identifier, "password": password}
-                response = requests.post(url, headers=self.headers_json, json=payload)
+            response = requests.post(url, data=payload, headers=headers)
+            response.raise_for_status()  # Se eleva una excepción para códigos de error HTTP
 
-            response.raise_for_status()
-            data = response.json()
-            # Normalizo status_code para facilitar asserts en tests
-            data["status_code"] = response.status_code
-            return data
+            # Se valida el esquema de la respuesta
+            response_json = response.json()
+            # La validación se omite por ahora, ya que no se tiene el esquema de la respuesta
 
+            # Se obtiene el token
+            access_token = response_json.get("access_token")
+            return access_token, response.status_code
+
+        except requests.exceptions.HTTPError as e:
+            print(f"Error HTTP: {e}")
+            return None, e.response.status_code
         except requests.exceptions.RequestException as e:
-            if getattr(e, "response", None) is not None:
-                return {"error": str(e), "status_code": e.response.status_code}
-            return {"error": str(e)}
+            print(f"Error en la solicitud: {e}")
+            return None, None
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"Error al procesar la respuesta JSON: {e}")
+            return None, response.status_code if 'response' in locals() else None
 
-    @staticmethod
-    def auth_header(access_token: str) -> Dict[str, str]:
-        return {"Authorization": f"Bearer {access_token}", "accept": "application/json"}
 
+# Para fines de prueba
+if __name__ == "__main__":
+    from config.config import config
+
+    api = LoginAPI()
+    print("Intentando login...")
+    token, status = api.login_user(config.ADMIN_USER, config.ADMIN_PASSWORD)
+    if token:
+        print(f"Login exitoso! Token: {token[:10]}...")
+        print(f"Código de estado: {status}")
+    else:
+        print(f"Login fallido. Código de estado: {status}")
