@@ -1,0 +1,11 @@
+description,tail_number,model,capacity,is_happy_path
+"Happy Path - valores válidos","ABC123","Boeing 737",180,TRUE
+"Happy Path - longitud límite mínima de tail_number (5)","PLANE","Airbus A320",150,TRUE
+"Happy Path - longitud límite máxima de tail_number (10)","ABCDEFGHIJ","Embraer E190",100,TRUE
+"Error - tail_number demasiado corto (<5)","ABC","Boeing 737",180,FALSE
+"Error - tail_number demasiado largo (>10)","ABCDEFGHIJKL","Airbus A320",200,FALSE
+"Error - tail_number vacío","","Boeing 747",300,FALSE
+"Error - model vacío","PLANE1","",250,FALSE
+"Error - capacity como texto","TAIL99","Boeing 777","two hundred",FALSE
+"Error - capacity negativo","TAIL55","Cessna 172",-5,FALSE
+"Error - capacity vacío","TAIL88","Boeing 747","",FALSE

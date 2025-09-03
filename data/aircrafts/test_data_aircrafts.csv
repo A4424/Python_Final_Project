@@ -1,8 +1,0 @@
-description,tail_number,model,capacity,is_happy_path
-Happy Path - BO788,N788B,Boeing 787 Dreamliner,242,True
-Happy Path - AirbusB,B380AB,Airbus A380,555,True
-Error - Invalid Capacity,N101X,Invalid Capacity,89.0,False
-Error - Missing Model,N202Y, ,300,False
-Error - Capacity Negative,N303Z,Boeing 747,-10,False
-Error - Capacity Too High,N404W,Boeing 777,1200,False
-Error - Capacity Not Integer,N606U,Boeing 737,ABC,False
