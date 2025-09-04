@@ -1,5 +1,4 @@
 # Ruta src/api/login_api.py
-# Ruta src/api/login_api.py
 
 import requests
 import json
