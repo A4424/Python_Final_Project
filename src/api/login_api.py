@@ -1,11 +1,9 @@
 # Ruta src/api/login_api.py
-
 import requests
 import json
 from ..schemas.login_schemas import login_schema
 from jsonschema import validate, ValidationError
 from config.config import config
-
 
 class LoginAPI:
     def __init__(self):
@@ -89,26 +87,6 @@ class LoginAPI:
 #         print(f"Código de estado: {status}")
 #     else:
 #         print(f"Login fallido. Código de estado: {status}")
-
-
-
-
-
-
-# ##PRUEBA CON JSON #########################
-# import requests
-#
-# url = "https://cf-automation-airline-api.onrender.com/auth/login"
-#
-# payload = {
-#     "username": "admin@demo.com",
-#     "password": "admin123",
-# }
-#
-# response = requests.post(url, json=payload)  # json=payload envía application/json
-#
-# print(response.status_code)
-# print(response.text)
 
 
 # ##PRUEBA CON form-urlencoded ####

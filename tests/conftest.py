@@ -107,7 +107,6 @@ def aircraft_data():
         "model": "Boeing 737",
         "capacity": 180
     }
-
 # Registrar marca order para evitar warnings
 def pytest_configure(config):
     config.addinivalue_line(

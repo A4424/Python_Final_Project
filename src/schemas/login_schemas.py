@@ -1,7 +1,5 @@
 #Ruta: src/schemas/login_schemas.py
-
 from jsonschema import validate, ValidationError
-
 login_schema = {
     "title": "Body_login_auth_login_post",
     "type": "object",
