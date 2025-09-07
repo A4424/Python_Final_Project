@@ -1,5 +1,0 @@
-description,username,passwords,is_happy_path
-Error - Datos faltantes de usuario 422,,admin123,False
-Error - Datos faltantes de clave 422,admin@demo.com,,False
-Error - Datos faltantes 422,, ,False
-Validar contrato: se espera 422,adminn@demo.com,adminn123,False

@@ -1,4 +1,6 @@
 tail_number,model,capacity
 ABC123,Boeing 737,180
-DEF456,Airbus A320,150
-GHI789,Embraer 190,100
+XYZ789,Airbus A320,150
+,Embraer 190,100
+
+

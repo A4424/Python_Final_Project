@@ -1,27 +1,11 @@
 #Ruta: src/schemas/login_schemas.py
-from jsonschema import validate, ValidationError
-login_schema = {
-    "title": "Body_login_auth_login_post",
+# src/schemas/login_schemas.py
+login_response_schema = {
+    "title": "LoginResponse",
     "type": "object",
     "properties": {
-        "grant_type": {
-            "type": ["string", "null"]
-        },
-        "username": {
-            "type": "string"
-        },
-        "password": {
-            "type": "string"
-        },
-        "scope": {
-            "type": "string"
-        },
-        "client_id": {
-            "type": ["string", "null"]
-        },
-        "client_secret": {
-            "type": ["string", "null"]
-        }
+        "access_token": {"type": "string"},
+        "token_type": {"type": "string"}
     },
-    "required": ["username", "password"]
+    "required": ["access_token", "token_type"]
 }
