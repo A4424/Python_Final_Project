@@ -1,0 +1,13 @@
+tail_number,model,capacity,description,expected_status
+XYZ,,150,Falta modelo,422
+ABC,Boeing 737,-10,Capacity negativa,422
+XYZ,Boeing 737,180,Tail number duplicado,409
+ABC0000,,0,Modelo vacío y capacidad mínima,422
+ABC0001,, -1,Modelo vacío y capacidad negativa,422
+ABC0002,Boeing 737,0,Capacidad mínima,422
+ABC0003,Boeing 737,1001,Capacidad excede límite máximo,422
+ABC0004, ,150,Modelo solo espacios,422
+, Boeing 737,150,Tail number vacío,422
+ABC!@#,Boeing 737,150,Tail number con caracteres inválidos,422
+ABC0006,Boeing 737,-150,Capacidad negativa,422
+ABC0007,Boeing 737,2147483647,Capacidad límite int grande,201

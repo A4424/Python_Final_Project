@@ -1,8 +1,15 @@
-tail_number,model,capacity,expected_status,description
-ABC123,Boeing 737,180,201,Caso Positivo: aeronave válida
-DEF456,Airbus A320,160,201,Caso Positivo: aeronave válida
-GHI789,Embraer 190,100,201,Caso Positivo: aeronave válida
-,NoModel,150,422,Caso Negativo: falta tail_number
-XYZ999,,200,422,Caso Negativo: falta modelo
-JKL111,Bombardier 0,abc,422,Caso Negativo: capacidad inválida
-TOOLONG12345,TestModel,120,422,Caso Negativo: tail_number demasiado largo
+model,capacity,tail_number,description,expected_status
+Boeing 737,180,XYZ999,Caso Positivo: aeronave válida,201
+Airbus A320,160,XYZ998,Caso Positivo: aeronave válida,201
+Embraer 190,120,XYZ997,Caso Positivo: aeronave válida,201
+Bombardier CRJ,100,XYZ996,Caso Positivo: aeronave válida,201
+Cessna 172,4,XYZ995,Caso Positivo: aeronave válida,201
+Boeing 737,1,POS0001,Capacidad mínima positiva,201
+Boeing 737,150,POS0002,Capacidad media estándar,201
+Boeing 737,500,POS0003,Capacidad alta dentro del rango,201
+Boeing 737,1000,POS0004,Capacidad máxima límite,201
+Airbus A320,2147483646,POS0005,Capacidad grande cercana a límite int,201
+Airbus A320,2147483647,POS0006,Capacidad límite int máximo,201
+Embraer 190,150,POS0007,Modelo estándar con tail_number normal,201
+Embraer 190,150,POS0008,Modelo estándar con tail_number alfanumérico,201
+

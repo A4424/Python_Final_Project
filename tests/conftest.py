@@ -21,6 +21,7 @@ from src.api.aircrafts_api import AircraftsAPI
 def login_api():
     return LoginAPI()
 
+
 # -------------------------------
 # Fixture: token de login
 # -------------------------------
