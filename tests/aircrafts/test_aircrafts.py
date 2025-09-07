@@ -63,18 +63,6 @@ def test_create_aircrafts_positive(aircrafts_api, aircraft_data):
 # -------------------------------
 @pytest.mark.create
 @pytest.mark.parametrize("aircraft_data", load_aircraft_data_from_csv("tests/data/aircrafts_negativos.csv"))
-# def test_create_aircrafts_negative(aircrafts_api, aircraft_data):
-#     if aircraft_data.get("tail_number"):
-#         aircraft_data["tail_number"] = f"{aircraft_data['tail_number']}{random.randint(1000,9999)}"
-#
-#     status, created = retry_api_call(aircrafts_api.create_aircraft, 3, 1, aircraft_data)
-#     print(f"DEBUG CREAAR NEGATIVO: status={status}, response={created}")
-#
-#     assert status == aircraft_data["expected_status"], f"Esperado {aircraft_data['expected_status']}, recibido {status}"
-
-
-#$$$$$$$$$$$$$
-
 def test_create_aircrafts_negative(aircrafts_api, aircraft_data):
     if aircraft_data.get("tail_number"):
         aircraft_data["tail_number"] = f"{aircraft_data['tail_number']}{random.randint(1000,9999)}"
@@ -89,12 +77,6 @@ def test_create_aircrafts_negative(aircrafts_api, aircraft_data):
         print(f"BUG: La API aceptó datos inválidos: {aircraft_data}")
     else:
         assert status == expected_status
-
-
-
-#$$$$$$$$$$$$$
-
-
 
 # -------------------------------
 # TEST READ
@@ -120,25 +102,6 @@ def test_get_all_aircrafts(aircrafts_api):
     print(f"DEBUG LISTAR: status={status}, response={result}")
     assert status == 200
     assert isinstance(result, list)
-
-# # -------------------------------
-# # TEST UPDATE
-# # -------------------------------
-# @pytest.mark.update
-# def test_update_aircraft(aircrafts_api):
-#     data = {"model": "ModTest", "capacity": 120, "tail_number": f"MOD{random.randint(1000,9999)}"}
-#     status, created = retry_api_call(aircrafts_api.create_aircraft, 3, 1, data)
-#     assert status == 201
-#     aircraft_id = created["id"]
-#
-#     new_data = {"model": "ModTestUpdated", "capacity": 200, "tail_number": data["tail_number"]}
-#     status, updated = retry_api_call(aircrafts_api.update_aircraft, 3, 1, aircraft_id, new_data)
-#     print(f"DEBUG UPDATE: status={status}, response={updated}")
-#     assert status == 200
-#     assert updated["capacity"] == 200
-#     assert updated["model"] == "ModTestUpdated"
-#
-#     aircrafts_api.delete_aircraft(aircraft_id)
 
 
 # -------------------------------
@@ -179,10 +142,6 @@ def test_update_aircraft(aircrafts_api, test_case, expected_status, modify_auth,
 
     # Limpiar registro de prueba
     aircrafts_api.delete_aircraft(aircraft_id)
-
-
-
-
 
 # -------------------------------
 # TEST DELETE
