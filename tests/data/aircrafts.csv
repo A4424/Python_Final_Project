@@ -1,4 +1,8 @@
-tail_number,model,capacity
-ABC123,Boeing 737,180
-DEF456,Airbus A320,150
-GHI789,Embraer 190,100
+tail_number,model,capacity,expected_status,description
+ABC123,Boeing 737,180,201,Caso Positivo: aeronave válida
+DEF456,Airbus A320,160,201,Caso Positivo: aeronave válida
+GHI789,Embraer 190,100,201,Caso Positivo: aeronave válida
+,NoModel,150,422,Caso Negativo: falta tail_number
+XYZ999,,200,422,Caso Negativo: falta modelo
+JKL111,Bombardier 0,abc,422,Caso Negativo: capacidad inválida
+TOOLONG12345,TestModel,120,422,Caso Negativo: tail_number demasiado largo
