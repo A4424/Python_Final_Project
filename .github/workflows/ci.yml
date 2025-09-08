@@ -44,13 +44,14 @@ jobs:
       # 5 Ejecutar tests con Pytest + reporte HTML + log
       - name: Run tests with Pytest
         run: |
-          pytest -v --maxfail=5 --disable-warnings \
+         pytest -v --disable-warnings \
             --html=tests/reports/report.html \
             --self-contained-html \
             --junitxml=tests/reports/results.xml \
             --log-cli-level=INFO \
             --log-file=tests/logs/test.log \
             --log-file-level=INFO
+
         continue-on-error: false
 
       # 6 Subir reportes y logs como artefactos
